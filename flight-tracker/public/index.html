@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skywatch – Live Air Traffic</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div id="map"></div>
+<header>
+  <div class="brand">✈ Skywatch</div>
+  <input id="search" type="search" placeholder="Search callsign, reg, hex, type…" autocomplete="off">
+  <div id="filters">
+    <button data-f="all" class="on">All</button><button data-f="plane">Airplanes</button><button data-f="heli">Helicopters</button>
+    <button data-f="mil">Military</button><button data-f="emerg">Emergency</button>
+  </div>
+  <div id="stats"></div>
+</header>
+<ul id="results" hidden></ul>
+<aside id="panel" hidden></aside>
+<div id="legend"><b>Altitude</b><i style="--c:#38bdf8"></i>ground<i style="--c:#4ade80"></i>&lt;5k<i style="--c:#facc15"></i>&lt;15k<i style="--c:#fb923c"></i>&lt;30k<i style="--c:#f472b6"></i>30k+ ft</div>
+<div id="badge" hidden></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body></html>
