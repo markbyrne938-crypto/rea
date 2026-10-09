@@ -1,1 +1,1 @@
-{ "name": "flight-tracker", "private": true, "type": "module", "scripts": { "start": "node server.js", "demo": "DEMO=1 node server.js" } }
+{ "name": "flight-tracker", "private": true, "type": "module", "scripts": { "start": "node server.js" } }

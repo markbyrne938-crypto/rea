@@ -43,6 +43,7 @@ async function refresh() {
   const nm = Math.min(250, Math.max(10, Math.ceil(c.distanceTo(b.getNorthEast()) / 1852)));
   try {
     const r = await fetch(`/api/aircraft?lat=${c.lat.toFixed(3)}&lon=${c.wrap().lng.toFixed(3)}&nm=${nm}`);
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error ?? `HTTP ${r.status}`);
     const j = await r.json();
     const seen = new Set();
     for (const a of j.ac) {
@@ -55,10 +56,14 @@ async function refresh() {
     // Drop aircraft the feed no longer reports for this view.
     for (const h of [...state.ac.keys()]) if (!seen.has(h)) { state.ac.delete(h); state.trails.delete(h); }
     const badge = $("#badge");
-    badge.hidden = j.source !== "demo";
-    badge.textContent = "⚠ Simulated traffic – live feeds unreachable";
+    badge.hidden = true;
     render();
-  } catch (e) { console.warn(e); }
+  } catch (e) {
+    console.warn(e);
+    // Never fabricate traffic: clear the map and say the live feed is down.
+    state.ac.clear(); state.trails.clear(); render();
+    const badge = $("#badge"); badge.hidden = false; badge.textContent = `⚠ No live data: ${e.message}`;
+  }
 }
 
 function render() {
