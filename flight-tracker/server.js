@@ -62,6 +62,7 @@ const send = (res, code, body, type = "application/json") => {
 http.createServer(async (req, res) => {
   const u = new URL(req.url, "http://x");
   try {
+    if (u.pathname === "/healthz") return send(res, 200, { ok: true });
     if (u.pathname === "/api/aircraft") {
       const lat = Number(u.searchParams.get("lat")), lon = Number(u.searchParams.get("lon"));
       const nm = Math.min(MAX_NM, Math.max(1, Math.round(Number(u.searchParams.get("nm") ?? 100))));
