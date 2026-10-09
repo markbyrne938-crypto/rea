@@ -3,7 +3,7 @@ const $ = (s) => document.querySelector(s);
 const map = L.map("map", { zoomControl: false, worldCopyJump: true, preferCanvas: false }).setView([40.7, -74], 8);
 L.control.zoom({ position: "bottomright" }).addTo(map);
 L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-  { maxZoom: 18, subdomains: "abcd", attribution: "© OpenStreetMap, © CARTO · ADS-B: airplanes.live / adsb.lol" }).addTo(map);
+  { maxZoom: 18, subdomains: "abcd", attribution: "© OpenStreetMap, © CARTO · ADS-B: adsb.lol" }).addTo(map);
 
 // Rotorcraft: ADS-B emitter category A7, or well-known ICAO helicopter type designators.
 const HELI = /^(R22|R44|R66|B06|B06T|B105|B212|B214|B222|B407|B412|B427|B429|B430|B47G|EC20|EC25|EC30|EC35|EC45|EC55|EC75|H125|H130|H135|H145|H155|H160|H175|H269|H500|H47|H53|H60|H64|AS32|AS35|AS50|AS55|AS65|A109|A119|A139|A149|A189|S61|S64|S70|S76|S92|MI8|MI24|KA32|UH1|NH90|CH47|EXPL)$/;

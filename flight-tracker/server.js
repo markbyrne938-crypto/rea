@@ -9,9 +9,8 @@ const PUBLIC = join(fileURLToPath(new URL(".", import.meta.url)), "public");
 const PORT = Number(process.env.PORT ?? 8080);
 const MAX_NM = 250; // upstream limit for /point queries
 
-// Open community feeds exposing the readsb/tar1090 v2 JSON schema.
+// Open community feed exposing the readsb/tar1090 v2 JSON schema.
 const PROVIDERS = [
-  { name: "airplanes.live", url: (a, o, d) => `https://api.airplanes.live/v2/point/${a}/${o}/${d}` },
   { name: "adsb.lol", url: (a, o, d) => `https://api.adsb.lol/v2/point/${a}/${o}/${d}` },
 ];
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml" };
